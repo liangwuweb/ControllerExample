@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using static System.Net.Mime.MediaTypeNames;
 
 namespace ControllerExample.Controllers
 {
@@ -6,8 +7,8 @@ namespace ControllerExample.Controllers
     {
         [Route("/")]
         [Route("home")]
-        public string Index() {
-            return "hello from Index";
+        public ContentResult Index() {
+            return Content("<h3>Hello from Index<h3>", "text / html");
         }
 
         [Route("about")]
