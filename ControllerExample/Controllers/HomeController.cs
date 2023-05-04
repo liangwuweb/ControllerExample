@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using static System.Net.Mime.MediaTypeNames;
+using ControllerExample.Models;
 
 namespace ControllerExample.Controllers
 {
@@ -11,10 +12,18 @@ namespace ControllerExample.Controllers
             return Content("<h3>Hello from Index<h3>", "text / html");
         }
 
-        [Route("about")]
-        public string About()
+        [Route("person")]
+        public JsonResult Person()
         {
-            return "hello from About";
+            Person person = new Person()
+            {
+                Id = Guid.NewGuid(),
+                FirstName = "Test",
+                LastName = "Test",
+                Age = 28
+            }; 
+            //return new JsonResult(person);
+            return Json(person);
         }
 
         [Route("contact-us/{mobile:regex(^\\d{{10}}$)}")]
