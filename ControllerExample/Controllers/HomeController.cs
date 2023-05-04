@@ -26,6 +26,29 @@ namespace ControllerExample.Controllers
             return Json(person);
         }
 
+        [Route("file-download")]
+        public VirtualFileResult FileDownload()
+        {
+            //return new VirtualFileResult("/sample.pdf", "application/pdf");
+            return File("/sample.pdf", "application/pdf");
+        }
+
+        [Route("file-download-physical")]
+        public PhysicalFileResult FileDownload2()
+        {
+            //return new PhysicalFileResult("C:\\Users\\liang\\source\\aspnetcore\\sample2.pdf", "application/pdf");
+            return PhysicalFile("C:\\Users\\liang\\source\\aspnetcore\\sample2.pdf", "application/pdf");
+        }
+
+        [Route("file-download-byte")]
+        public FileContentResult FileDownload3()
+
+        {
+            byte[] bytes = System.IO.File.ReadAllBytes("C:\\Users\\liang\\source\\aspnetcore\\sample2.pdf");
+            //return new FileContentResult(bytes, "application/pdf");
+            return File(bytes, "application/pdf");
+        }
+
         [Route("contact-us/{mobile:regex(^\\d{{10}}$)}")]
         public string Contact()
         {
